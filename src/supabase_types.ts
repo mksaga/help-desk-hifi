@@ -13,20 +13,41 @@ export type Database = {
         Row: {
           created_at: string
           id: string
-          status: string | null
-          user_id: string | null
+          status: string
+          user_id: string
         }
         Insert: {
           created_at?: string
           id?: string
-          status?: string | null
-          user_id?: string | null
+          status: string
+          user_id: string
         }
         Update: {
           created_at?: string
           id?: string
-          status?: string | null
-          user_id?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      users: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          name: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string | null
         }
         Relationships: []
       }

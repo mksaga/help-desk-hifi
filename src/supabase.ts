@@ -14,4 +14,17 @@ async function ListTickets() {
   return data
 }
 
-export { ListTickets };
+
+async function ReadUser(userID: string) {
+  // let {data, error} = await supabase
+  const userQuery = supabase
+    .from('users')
+    .select('*')
+    .eq('id', userID)
+    .limit(1)
+
+  const { data, error } = await userQuery;
+  return data
+}
+
+export { ListTickets, ReadUser };
