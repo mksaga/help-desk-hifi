@@ -26,7 +26,7 @@ interface HydratedTicket {
   comments: Comment[]
 }
 
-async function HydrateTickets(rawTickets: Tables<'tickets'>[] | null): Promise<HydratedTicket[] | undefined> {
+async function HydrateTickets(rawTickets: Ticket[] | null): Promise<HydratedTicket[] | undefined> {
   let hydratedTickets: HydratedTicket[] = []
   if (rawTickets == null) {
     return hydratedTickets
