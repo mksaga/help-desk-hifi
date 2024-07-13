@@ -43,7 +43,7 @@ async function HydrateTickets(rawTickets: Tables<'tickets'>[] | null): Promise<H
       user_email: ticket.user_email,
     }
 
-    // TODO: link comments
+    // TODO: hydrate comments
     hydratedTickets.push(hydratedTicket)
     }
 
