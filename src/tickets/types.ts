@@ -24,26 +24,26 @@ async function HydrateTickets(rawTickets: Tables<'tickets'>[] | null): Promise<T
   }
 
   for (const ticket of rawTickets) {
-    let userData = await ReadUser(ticket.user_id)
-    console.log(userData)
     let hydratedTicket: Ticket = {
       id: ticket.id,
       created_at: ticket.created_at,
       user_id: ticket.user_id,
       status: ticket.status,
       comments: [],
-      user_name: "Zeynep",
-      user_email: "hello@apple.com",
+      user_name: "",
+      user_email: "",
     }
-    if (userData != null) {
+
+    // Fill in user details, if present
+    let userData = await ReadUser(ticket.user_id)
+    if (userData != null && userData.length > 0) {
       hydratedTicket.user_name = userData[0].name ?? "Zeynep";
       hydratedTicket.user_email = userData[0].email ?? "hello@apple.com";
-      }
+    }
 
     hydratedTickets.push(hydratedTicket)
     }
 
-  console.log("HYDRATED: ", hydratedTickets)
   return hydratedTickets
 }
 
