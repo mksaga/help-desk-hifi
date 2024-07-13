@@ -10,6 +10,9 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Express + za TypeScript Server');
 });
 
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 app.use('/tickets', require('./tickets/router'));
 
 app.listen(port, () => {

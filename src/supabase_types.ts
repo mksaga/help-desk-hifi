@@ -12,21 +12,27 @@ export type Database = {
       tickets: {
         Row: {
           created_at: string
+          description: string
           id: string
           status: string
-          user_id: string
+          user_email: string
+          user_name: string
         }
         Insert: {
           created_at?: string
+          description: string
           id?: string
           status: string
-          user_id: string
+          user_email?: string
+          user_name?: string
         }
         Update: {
           created_at?: string
+          description?: string
           id?: string
           status?: string
-          user_id?: string
+          user_email?: string
+          user_name?: string
         }
         Relationships: []
       }
