@@ -113,7 +113,7 @@ async function submitComment(event: FormEvent<HTMLFormElement>) {
     plainFormData["id"] = ticket.id;
     const formDataJsonString = JSON.stringify(plainFormData);
 
-    axios({
+    let rsp = axios({
       method: "put",
       url: "/api/ticket",
       data: plainFormData,

@@ -1,6 +1,7 @@
 import 'bulma/css/bulma.css';
 
 import { FormEvent } from 'react'
+const axios = require("axios");
 
 export default function Home() {
 
@@ -11,15 +12,14 @@ export default function Home() {
     const formDataJsonString = JSON.stringify(plainFormData);
     console.log(formDataJsonString)
 
-    const response = await fetch(`/api/tickets`, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: formDataJsonString,
+    let axiosRsp = axios({
+      method: "post",
+      url: "/api/tickets",
+      data: plainFormData,
     })
-    
-    const data = await response.json()
+
+    const data = axiosRsp.data
+    console.log("AxioSRsp: ", data)
   }
 
   return (

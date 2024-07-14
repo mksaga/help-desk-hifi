@@ -27,9 +27,9 @@ tickets.get('/:id', async function(req: Request, res: Response, next: NextFuncti
 tickets.post('/', upload.none(), async function(req: Request, res: Response) {
   let ticket = BuildTicket(req)
   console.log("BuiltTicket: ", ticket)
-  // let data = await CreateTicket(ticket);
-  // EmailUser("admin@ticketdash.co", ticket);
-  // res.json(data);
+  let data = await CreateTicket(ticket);
+  EmailUser("admin@ticketdash.co", ticket);
+  res.json(data);
 });
 
 tickets.put('/:id', async function(req: Request, res: Response) {

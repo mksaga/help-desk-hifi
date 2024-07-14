@@ -21,7 +21,6 @@ export default function Home() {
     }, [])
 
   const { pathname } = useRouter();
-  console.log(pathname);
 
   return (
     <main className="container p-6 is-flex is-flex-direction-column is-justify-content-space-between is-align-items-center">
