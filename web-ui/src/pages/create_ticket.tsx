@@ -29,8 +29,6 @@ export default function Home() {
         <h2 className="is-size-2">Create a new ticket</h2>
       </div>
       <form onSubmit={submitForm} className="form pt-2 is-flex is-flex-direction-column is-align-items-center">
-            {/* <input className="input" type="text" name="name" placeholder="Name" required/> */}
-            {/* <input className="input" type="email" name="email" placeholder="Email" required/> */}
         <div className="field">
           <label className="label">Name</label>
           <div className="control">

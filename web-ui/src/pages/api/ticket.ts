@@ -13,16 +13,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data: req.body,
     })
 
-    // let fetchRsp = await fetch(`${process.env.API_BASE_URL}/tickets/${req.body.id}`, {
-    //   headers: {
-    //     "Content-Type": "application/x-www-form-url-encoded",
-    //   },
-    //   method: 'PUT',
-    //   body: req.body,
-    // });
-    // console.log("FetchRSP: ", fetchRsp)
-    // console.log(await fetchRsp.json())
-
     res.status(200).json(req.body)
+  }
+  if (req.method == "GET") {
+    let res = axios({
+      method: "get",
+      url: `${process.env.API_BASE_URL}/tickets/${req.body.id}`,
+    })
+    console.log(res)
   }
 }
