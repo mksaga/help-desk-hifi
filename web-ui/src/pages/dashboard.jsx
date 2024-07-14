@@ -3,19 +3,9 @@ import 'bulma/css/bulma.css';
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-// export const getServerSideProps = (async () => {
-//   let apiURL = process.env.API_BASE_URL
-//   if (apiURL == null) {
-//     apiURL = "https://help-desk-hifi.onrender.com/"
-//   }
-//   const res = await fetch(`${apiURL}/api/tickets`, {
-//     method: 'GET',
-//   }) 
-//   const tickets = await res.json()
-//   return { props: { tickets }}
-// })
 
-export default function Home({ tickets }) {
+
+export default function Home() {
   let [tickets, setTickets] = useState([])
 
   useEffect( () => {
