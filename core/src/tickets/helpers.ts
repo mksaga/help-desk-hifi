@@ -1,37 +1,28 @@
 import { v4 as uuidv4} from "uuid";
 import { Request } from "express";
 import { Ticket } from "./types"
-import { ReadTicket } from "./repo"
 
-
-
-function BuildTicket(req: Request): Ticket {
+function BuildNewTicket(req: Request): Ticket {
   const nowTimestamp: Date = new Date();
-
-  console.log(req.body)
-
-  let id = uuidv4();
-  let created_at = nowTimestamp.toISOString()
-  let status = "new";
-  let user_name = req.body.name
-  let user_email = req.body.email
-  let description = req.body.description
-
-  if (req.method == "PUT") {
-    id = req.body.id;
-    if (req.body.status != null && req.body.status != "") {
-      status = req.body.status
-    }
-  }
-
   return {
-    "id": id,
-    "created_at": created_at,
-    "status": status,
-    "user_name": user_name,
-    "user_email": user_email,
-    "description": description,
+    "id": uuidv4(),
+    "created_at": nowTimestamp.toISOString(),
+    "user_name": req.body.user_name,
+    "user_email": req.body.user_email,
+    "description": req.body.description,
+    "status": "new"
   }
 }
 
-export { BuildTicket }
+function BuildTicket(req: Request, existingTicket: Ticket): Ticket {
+  return {
+    "id": existingTicket.id,
+    "created_at": existingTicket.created_at,
+    "status": req.body.status,
+    "user_name": existingTicket.user_name,
+    "user_email": existingTicket.user_email,
+    "description": existingTicket.description,
+  }
+}
+
+export { BuildTicket, BuildNewTicket }

@@ -1,10 +1,9 @@
 'use strict'
 
-import express, { Express, Request, Response, NextFunction } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import { ReadTicket, ListTickets, CreateTicket, UpdateTicket } from "./repo"
-import { BuildTicket } from "./helpers"
+import { BuildTicket, BuildNewTicket } from "./helpers"
 import { HydrateTickets } from "./types"
-import { Tables } from "../supabase_types"
 import { EmailUser } from "../email"
 
 var tickets = express.Router();
@@ -22,17 +21,15 @@ tickets.get('/:id', async function(req: Request, res: Response, next: NextFuncti
 
 
 tickets.post('/', async function(req: Request, res: Response) {
-  let ticket = BuildTicket(req)
-  console.log("BuiltTicket: ", ticket)
+  let ticket = BuildNewTicket(req)
   let data = await CreateTicket(ticket);
   EmailUser("admin@ticketdash.co", ticket);
   res.json(data);
 });
 
 tickets.put('/:id', async function(req: Request, res: Response) {
-  await console.log("PUT /id body: ", req.body)
-  let ticket = await BuildTicket(req)
-  console.log("BuiltTicket: ", ticket)
+  let existingTicket = await ReadTicket(req.params.id)
+  let ticket = BuildTicket(req, existingTicket)
   let data = await UpdateTicket(ticket);
   EmailUser("admin@ticketdash.co", ticket);
   res.json(data);

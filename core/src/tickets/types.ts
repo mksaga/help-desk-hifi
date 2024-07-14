@@ -8,7 +8,7 @@ interface Comment {
 
 interface Ticket {
   id: string
-  created_at: string
+  created_at: string 
   user_name: string
   user_email: string
   status: string

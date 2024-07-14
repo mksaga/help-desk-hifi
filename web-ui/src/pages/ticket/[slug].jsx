@@ -68,7 +68,6 @@ export default function Home() {
       </div>
     </main>
 
-    {/* <div className="is-flex is-flex-direction-row mx-auto" style={{maxWidth: 500}}> */}
     <div className="is-flex is-flex-direction-column">
       <section className="mx-auto mb-5" style={{maxWidth: 400}} >
           <div>
@@ -77,8 +76,8 @@ export default function Home() {
         <form onSubmit={updateStatus} className="form is-flex is-align-items-center is-justify-content-center">
           <div className="select">
             <select className="select" name="status">
-                <option value="in-progress">In Progress</option>
-                <option value="resolved">Resolved</option>
+                {ticket.status != "in-progress" && <option value="in-progress">In Progress</option>}
+                {ticket.status != "resolved" && <option value="resolved">Resolved</option>}
             </select>
           </div> 
           <button className="button is-primary ml-2" type="submit">Submit</button>
@@ -91,7 +90,7 @@ export default function Home() {
           <form onSubmit={submitComment} className="form pt-2 is-flex is-flex-direction-column is-align-items-center">
             <div className="field">
               <div className="control">
-              <textarea className="textarea" type="textarea" name="description" rows="4" />
+              <textarea id="commentField" className="textarea" type="textarea" name="comment" rows="4" />
               </div>
             </div> 
             <button className="button is-primary mt-2" type="submit">Submit</button>
@@ -109,13 +108,20 @@ async function submitComment(event) {
     const formData = new FormData(event.currentTarget)
     const plainFormData = Object.fromEntries(formData.entries());
     plainFormData["id"] = ticket.id;
-    const formDataJsonString = JSON.stringify(plainFormData);
 
+    console.log("Submitting comment...")
     let rsp = axios({
       method: "put",
       url: "/api/ticket",
       data: plainFormData,
     })
+    ticket.comments = [plainFormData.comment]
+    setTicket(ticket)
+    EmailUser(ticket);
+
+    // Clear contents
+    document.getElementById("commentField").value = "";
+    return rsp.data
   }
 
 async function updateStatus(event) {
@@ -123,7 +129,6 @@ async function updateStatus(event) {
     const formData = new FormData(event.currentTarget)
     const plainFormData = Object.fromEntries(formData.entries());
     plainFormData["id"] = ticket.id;
-    const formDataJsonString = JSON.stringify(plainFormData);
 
     let rsp = await axios({
       method: "put",
@@ -133,9 +138,30 @@ async function updateStatus(event) {
 
     // Update local state
     ticket.status = rsp.data.status;
-    setTicketStatus(ticket.status)
+    setTicketStatus(ticket.status);
+    EmailUser(ticket);
+    return rsp.data
   }
 
 }
 
+function EmailUser(ticket) {
+  const fromEmail = "admin@helpdesk.co"
+  let message = `
+  From: ${fromEmail}
+  To: ${ticket.user_email}
+  
+  Subject: Update to your ticket ${ticket.id}
 
+  Hello,
+  Your ticket ${ticket.id} has been marked as ${ticket.status}.
+  `
+
+  if (ticket.comments && ticket.comments.length > 0) {
+    message = message + `
+    New comments from admin: ${ticket.comments[0]}
+    `
+  }
+  console.log(message)
+  return
+}

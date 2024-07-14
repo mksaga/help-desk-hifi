@@ -21,11 +21,8 @@ async function ListTickets() {
   return domainTickets
 }
 
-async function ReadTicket(ticketID: string) {
-  let dbTicket: Tables<'tickets'> | null = await SupabaseReadTicket(ticketID);
-  if (dbTicket == null) {
-    return {}
-  }
+async function ReadTicket(ticketID: string): Promise<Ticket> {
+  let dbTicket: Tables<'tickets'> = await SupabaseReadTicket(ticketID);
   let domainTicket: Ticket = marshalTicket(dbTicket)
   return domainTicket
 }
