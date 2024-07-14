@@ -1,4 +1,3 @@
-import { ReadUser } from "./repo";
 import { Tables } from '../supabase_types'
 
 interface Comment {
@@ -26,6 +25,9 @@ interface HydratedTicket {
   comments: Comment[]
 }
 
+/** HydrateTickets takes in a list of Tickets from the db
+  * and enriches them with comments from the Comments table
+  */
 async function HydrateTickets(rawTickets: Ticket[] | null): Promise<HydratedTicket[] | undefined> {
   let hydratedTickets: HydratedTicket[] = []
   if (rawTickets == null) {

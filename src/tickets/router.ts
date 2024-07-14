@@ -1,7 +1,7 @@
 'use strict'
 
 import express, { Express, Request, Response, NextFunction } from "express";
-import { ListTickets, CreateTicket } from "./repo"
+import { ReadTicket, ListTickets, CreateTicket } from "./repo"
 import { BuildTicket } from "./helpers"
 import { HydrateTickets } from "./types"
 import { Tables } from "../supabase_types"
@@ -13,6 +13,11 @@ tickets.get('/', async function(req: Request, res: Response, next: NextFunction)
   let hydratedTickets = await HydrateTickets(data)
   res.json(hydratedTickets);
 });
+
+tickets.get('/:id', async function(req: Request, res: Response, next: NextFunction) {
+  let data = await ReadTicket(req.params.id)
+  res.json(data)
+})
 
 
 tickets.post('/', async function(req: Request, res: Response, next: NextFunction) {

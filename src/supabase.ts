@@ -17,6 +17,28 @@ async function ListTickets() {
   return data
 }
 
+
+async function ReadTicket(ticketID: string) {
+  const ticketQuery = supabase
+    .from('tickets')
+    .select('*')
+    .eq('id', ticketID)
+    .limit(1)
+
+  const { data, error } = await ticketQuery;
+  if (data == null) {
+    return {
+      "id": "",
+      "created_at": "",
+      "user_name": "",
+      "user_email": "",
+      "status": "",
+      "description": "",
+    }
+  }
+  return data[0]
+}
+
 async function CreateTicket(ticket: Ticket) {
   let {data, error} = await supabase.from('tickets').insert(ticket)
   if (error) {
@@ -27,18 +49,4 @@ async function CreateTicket(ticket: Ticket) {
 }
 
 
-// ------------- USER
-
-async function ReadUser(userID: string) {
-  // let {data, error} = await supabase
-  const userQuery = supabase
-    .from('users')
-    .select('*')
-    .eq('id', userID)
-    .limit(1)
-
-  const { data, error } = await userQuery;
-  return data
-}
-
-export { ListTickets, CreateTicket, ReadUser };
+export { ListTickets, CreateTicket, ReadTicket };
