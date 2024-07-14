@@ -42,6 +42,7 @@ async function ReadTicket(ticketID: string) {
 async function CreateTicket(ticket: Ticket) {
   let {data, error} = await supabase.from('tickets').insert(ticket)
   if (error) {
+    console.log(error);
     throw error;
   }
 
@@ -49,4 +50,14 @@ async function CreateTicket(ticket: Ticket) {
 }
 
 
-export { ListTickets, CreateTicket, ReadTicket };
+async function UpdateTicket(ticket: Ticket) {
+  let {data, error} = await supabase.from('tickets').update(ticket).eq('id', ticket.id)
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+
+  return data
+}
+
+export { ListTickets, CreateTicket, ReadTicket, UpdateTicket };

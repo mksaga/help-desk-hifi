@@ -1,7 +1,8 @@
 import { 
   ListTickets as SupabaseListTickets,
   ReadTicket as SupabaseReadTicket,
-  CreateTicket as SupabaseCreateTicket
+  CreateTicket as SupabaseCreateTicket,
+  UpdateTicket as SupabaseUpdateTicket,
 } from "../supabase"
 
 import { Tables } from "../supabase_types"
@@ -33,6 +34,10 @@ async function CreateTicket(ticket: Ticket) {
   return await SupabaseCreateTicket(ticket)
 }
 
+async function UpdateTicket(ticket: Ticket) {
+  return await SupabaseUpdateTicket(ticket)
+}
+
 function marshalTicket(ticket: Tables<'tickets'>): Ticket {
   return {
       id: ticket.id,
@@ -44,4 +49,4 @@ function marshalTicket(ticket: Tables<'tickets'>): Ticket {
   }
 }
 
-export { ReadTicket, ListTickets, CreateTicket };
+export { ReadTicket, ListTickets, CreateTicket, UpdateTicket };
