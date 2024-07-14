@@ -7,3 +7,5 @@ curl https://help-desk-hifi.onrender.com/tickets
 ```
 
 `web-ui/` holds the NextJS frontend, running at `https://help-desk-hifi.vercel.app`.
+Create ticket URL: `https://help-desk-hifi.vercel.app/`
+Dashboard URL: `https://help-desk-hifi.vercel.app/dashboard`

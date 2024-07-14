@@ -4,11 +4,13 @@ import { Ticket } from "./types"
 
 function BuildNewTicket(req: Request): Ticket {
   const nowTimestamp: Date = new Date();
+  console.log(req.body)
+  console.log(req.params)
   return {
     "id": uuidv4(),
     "created_at": nowTimestamp.toISOString(),
-    "user_name": req.body.user_name,
-    "user_email": req.body.user_email,
+    "user_name": req.body.name,
+    "user_email": req.body.email,
     "description": req.body.description,
     "status": "new"
   }
