@@ -5,7 +5,7 @@ const axios = require("axios");
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   let apiURL = process.env.API_BASE_URL
   if (apiURL == null) {
-    apiURL = "https://help-desk-hifi.onrender.com/"
+    apiURL = "https://help-desk-hifi.onrender.com"
   }
   console.log("ApiURL: ", apiURL)
   if (req.method == "PUT") {

@@ -5,7 +5,7 @@ const axios = require("axios");
 export default async function handler(req, res) {
   let apiURL = process.env.API_BASE_URL
   if (apiURL == null) {
-    apiURL = "https://help-desk-hifi.onrender.com/"
+    apiURL = "https://help-desk-hifi.onrender.com"
   }
   if (req.method == "GET") {
     let axiosRsp = await axios({
