@@ -5,12 +5,12 @@ import { Ticket } from "./tickets/types"
 function EmailUser(fromEmail: string, ticket: Ticket) {
   const message = `
   From: ${fromEmail}
-  To: ${ticket.user_email}
+  To: <user email>
   
-  Subject: Update to your ticket \"${ticket.description}\"
+  Subject: Update to your ticket
 
-  Hello ${ticket.user_name},
-  Your ticket \"${ticket.description}\" has been marked as ${ticket.status}.
+  Hello,
+  Your ticket \"${ticket.id}\" has been marked as ${ticket.status}.
   Comments from the admin: <fill in ticket>.
   `
   console.log(message)

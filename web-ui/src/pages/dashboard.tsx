@@ -15,8 +15,7 @@ export default function Home() {
     })
     
     const data = await response.json()
-    console.log("RESPONSEDATA: ", data)
-      setTickets(data)
+    setTickets(data)
   }
     fetchTickets()
     }, [])
@@ -53,14 +52,12 @@ export default function Home() {
 
 
 function TicketRow(content, index) {
-  console.log("building ticket")
-  console.log(content)
   return (
     <tr key={`ticket-${content.id}`}>
       <td><TicketStatusTag ticket={content} /></td>
       <td>{content.user_name}</td>
       <td>{content.user_email}</td>
-      <td>{content.description}</td>
+      <td style={{maxWidth: 250}}>{content.description}</td>
       <td><TicketDetailsLink ticket={content} /></td>
     </tr>
   )

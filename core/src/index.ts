@@ -15,17 +15,6 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use('/tickets', require('./tickets/router'));
 
-app.post('/create-ticket', async function(req: Request, res: Response) {
-  console.log("CreateTicket BODY: ", req.body)
-  let ticket = BuildTicket(req)
-  res.json(ticket)
-  // let data = await CreateTicket(ticket);
-  // EmailUser("admin@ticketdash.co", ticket);
-  // res.json(data);
-});
-
-
-
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 })

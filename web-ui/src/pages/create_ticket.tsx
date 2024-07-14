@@ -20,7 +20,6 @@ export default function Home() {
     })
     
     const data = await response.json()
-    console.log("RESPONSEDATA: ", data)
   }
 
   return (
