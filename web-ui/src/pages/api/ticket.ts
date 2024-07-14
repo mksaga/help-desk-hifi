@@ -3,11 +3,15 @@ import type { NextApiRequest, NextApiResponse } from "next"
 const axios = require("axios");
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  let apiURL = process.env.API_BASE_URL
+  if (apiURL == null) {
+    apiURL = "https://help-desk-hifi.onrender.com/"
+  }
   if (req.method == "PUT") {
     axios({
       method: "put",
       mode: 'no-cors',
-      url: `${process.env.API_BASE_URL}/tickets/${req.body.id}`,
+      url: `${apiURL}/tickets/${req.body.id}`,
       data: req.body,
     })
 
@@ -17,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let res = axios({
       method: "get",
       mode: 'no-cors',
-      url: `${process.env.API_BASE_URL}/tickets/${req.body.id}`,
+      url: `${apiURL}/tickets/${req.body.id}`,
     })
     console.log(res)
   }
