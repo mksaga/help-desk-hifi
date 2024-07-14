@@ -3,7 +3,6 @@ import type { NextApiRequest, NextApiResponse } from "next"
 const axios = require("axios");
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log("Greetings from /api/ticket")
   if (req.method == "PUT") {
     axios({
       method: "put",
