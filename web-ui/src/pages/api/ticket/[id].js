@@ -7,6 +7,7 @@ export default async function handler(req, res) {
   if (req.method == "GET") {
     let axiosRsp = await axios({
       method: "get",
+      mode: 'no-cors',
       url: `${process.env.API_BASE_URL}/tickets/${req.query.id}`,
     })
     res.status(200).json(axiosRsp.data)

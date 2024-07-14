@@ -5,6 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method == "POST") {
     let axiosRsp = await axios({
       method: "post",
+      mode: 'no-cors',
       url: `${process.env.API_BASE_URL}/tickets/`,
       data: req.body,
     })
