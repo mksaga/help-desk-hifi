@@ -43,7 +43,7 @@ export default function Home() {
         <div className="field mt-3">
           <label className="label">Description</label>
           <div className="control">
-          <textarea className="textarea" type="textarea" name="description" rows="4" />
+          <textarea className="textarea" name="description" rows={4} />
           </div>
         </div> 
         <button className="button is-primary mt-2" type="submit">Submit</button>
