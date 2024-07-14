@@ -1,10 +1,8 @@
 'use client'
 
 import 'bulma/css/bulma.css';
-import { FormEvent } from 'react'
+import { FormEvent, useState, useEffect } from 'react'
 const axios = require("axios");
-
-import { useState, useEffect } from "react"
 
 import { TicketStatusTag } from "../dashboard"
 import { usePathname } from "next/navigation"
@@ -52,6 +50,7 @@ export default function Home() {
         <table className="table" >
           <thead>
             <tr>
+    
               <td><b>status</b></td>
               <td><b>name</b></td>
               <td><b>email</b></td>

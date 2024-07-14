@@ -72,11 +72,11 @@ export function TicketStatusTag(props) {
 
 function TicketDetailsLink({ ticket }) {
   return (
-    <a href={`/ticket/${ticket.id}`}>
-    <span className={`tag is-link`}>
-      Details
-    </span>
-    </a>
+        <span className={`tag is-link is-light`}>
+        <a href={`/ticket/${ticket.id}`}>
+            Details
+        </a>
+        </span>
   )
 }
 

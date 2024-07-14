@@ -9,9 +9,6 @@ import { EmailUser } from "../email"
 
 var tickets = express.Router();
 
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' })
-
 tickets.get('/', async function(req: Request, res: Response, next: NextFunction) {
   let data = await ListTickets()
   let hydratedTickets = await HydrateTickets(data)
@@ -24,7 +21,7 @@ tickets.get('/:id', async function(req: Request, res: Response, next: NextFuncti
 })
 
 
-tickets.post('/', upload.none(), async function(req: Request, res: Response) {
+tickets.post('/', async function(req: Request, res: Response) {
   let ticket = BuildTicket(req)
   console.log("BuiltTicket: ", ticket)
   let data = await CreateTicket(ticket);
