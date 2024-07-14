@@ -14,7 +14,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(200).json(axiosRsp.data)
   }
   if (req.method == "GET") {
-    console.log("Pathname: ", req.pathname);
     let axiosRsp = await axios({
       method: "get",
       url: `${process.env.API_BASE_URL}/tickets/`,
