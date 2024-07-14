@@ -9,7 +9,11 @@ export default function Home() {
 
   useEffect( () => {
   async function fetchTickets() {
-    console.log(`URL: ${process.env.API_BASE_URL}`)
+    let apiURL = process.env.API_BASE_URL
+    if (apiURL == null) {
+      apiURL = "https://help-desk-hifi.onrender.com/"
+    }
+    console.log("API URL: ", apiURL)
     const response = await fetch(`/api/tickets`, {
       method: 'GET',
     })
