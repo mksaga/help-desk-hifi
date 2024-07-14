@@ -72,16 +72,34 @@ function TicketRow(content, index) {
   console.log(content)
   return (
     <tr key={`ticket-${content.id}`}>
-      <td><span className={`tag is-${mapTicketStatusToTag(content.status)}`}>{content.status}</span></td>
+      <td><TicketStatusTag ticket={content} /></td>
       <td>{content.user_name}</td>
       <td>{content.user_email}</td>
       <td>{content.description}</td>
-      <td><a href={`/ticket/${content.id}`}><span className="tag is-link">Details</span></a></td>
+      <td><TicketDetailsLink ticket={content} /></td>
     </tr>
   )
 }
 
-function mapTicketStatusToTag(ticketStatus) {
+export function TicketStatusTag(props) {
+  return (
+    <span className={`tag is-${mapTicketStatusToTag(props.ticket.status)}`}>
+      {props.ticket.status}
+    </span>
+  )
+}
+
+function TicketDetailsLink({ ticket }) {
+  return (
+    <a href={`/ticket/${ticket.id}`}>
+    <span className={`tag is-link`}>
+      Details
+    </span>
+    </a>
+  )
+}
+
+export function mapTicketStatusToTag(ticketStatus) {
   switch (ticketStatus) {
     case "new":
       return "info"

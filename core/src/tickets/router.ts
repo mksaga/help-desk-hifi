@@ -32,8 +32,10 @@ tickets.post('/', upload.none(), async function(req: Request, res: Response) {
   // res.json(data);
 });
 
-tickets.put('/:id', async function(req: Request, res: Response, next: NextFunction) {
+tickets.put('/:id', async function(req: Request, res: Response) {
+  await console.log("PUT /id body: ", req.body)
   let ticket = BuildTicket(req)
+  console.log("BuiltTicket: ", ticket)
   let data = await UpdateTicket(ticket);
   EmailUser("admin@ticketdash.co", ticket);
   res.json(data);
