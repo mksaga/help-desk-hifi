@@ -5,12 +5,10 @@ import { BuildTicket } from "./tickets/helpers"
 dotenv.config();
 
 const app = express();
+const cors = require("cors")
 const port = process.env.PORT || 3000;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + za TypeScript Server');
-});
-
+app.use(cors())
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use('/tickets', require('./tickets/router'));
