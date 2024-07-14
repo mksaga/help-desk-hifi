@@ -39,7 +39,7 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {tickets.map((content, index) => (
+            {tickets.map((content) => (
               TicketRow(content)
             ))} 
           </tbody>
@@ -50,7 +50,7 @@ export default function Home() {
 }
 
 
-function TicketRow(content, index) {
+function TicketRow(content) {
   return (
     <tr key={`ticket-${content.id}`}>
       <td><TicketStatusTag ticket={content} /></td>
