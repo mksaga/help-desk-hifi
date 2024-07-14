@@ -9,7 +9,6 @@ export default function Home() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget)
     const plainFormData = Object.fromEntries(formData.entries());
-    const formDataJsonString = JSON.stringify(plainFormData);
 
     let axiosRsp = axios({
       method: "post",

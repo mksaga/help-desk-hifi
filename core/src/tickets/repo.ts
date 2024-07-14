@@ -8,6 +8,8 @@ import {
 import { Tables } from "../supabase_types"
 import { Ticket } from './types'
 
+/** ListTickets returns all tickets from the database and marshals them to a
+ * storage-agnostic format. */
 async function ListTickets() {
   let dbTickets: Tables<'tickets'>[] | null = await SupabaseListTickets();
   let domainTickets: Ticket[] = [];
@@ -21,6 +23,8 @@ async function ListTickets() {
   return domainTickets
 }
 
+/** ReadTickets accepts an ID and returns the matching ticket from the database.
+ */
 async function ReadTicket(ticketID: string): Promise<Ticket> {
   let dbTicket: Tables<'tickets'> = await SupabaseReadTicket(ticketID);
   let domainTicket: Ticket = marshalTicket(dbTicket)

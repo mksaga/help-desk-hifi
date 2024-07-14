@@ -17,7 +17,6 @@ async function ListTickets() {
   return data
 }
 
-
 async function ReadTicket(ticketID: string) {
   const ticketQuery = supabase
     .from('tickets')
@@ -48,7 +47,6 @@ async function CreateTicket(ticket: Ticket) {
 
   return data
 }
-
 
 async function UpdateTicket(ticket: Ticket) {
   let {data, error} = await supabase.from('tickets').update(ticket).eq('id', ticket.id)
