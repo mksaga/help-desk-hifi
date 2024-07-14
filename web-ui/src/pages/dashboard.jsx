@@ -1,32 +1,21 @@
 import 'bulma/css/bulma.css';
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-
-
 
 export default function Home() {
   let [tickets, setTickets] = useState([])
 
   useEffect( () => {
   async function fetchTickets() {
-    let apiURL = process.env.API_BASE_URL
-    if (apiURL == null) {
-      apiURL = "https://help-desk-hifi.onrender.com/"
-    }
-    console.log("API URL: ", apiURL)
     const response = await fetch(`/api/tickets`, {
       method: 'GET',
     })
     console.log("Response: ", response)
-    
     const data = await response.json()
     setTickets(data)
   }
     fetchTickets()
     }, [])
-
-  const { pathname } = useRouter();
 
   return (
     <main className="container p-6 is-flex is-flex-direction-column is-justify-content-space-between is-align-items-center">
