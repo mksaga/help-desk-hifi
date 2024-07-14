@@ -19,9 +19,9 @@ function BuildTicket(req: Request): Ticket {
   return {
     "id": id,
     "created_at": nowTimestamp.toISOString(),
+    "status": status,
     "user_name": req.body.name,
     "user_email": req.body.email,
-    "status": status,
     "description": req.body.description,
   }
 }
