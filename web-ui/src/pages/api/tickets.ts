@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+const axios = require("axios");
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   console.log("Greetings from /api/tickets")
@@ -24,8 +25,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   if (req.method == "GET") {
     console.log("Pathname: ", req.pathname);
-    // Handle listing all tickets, or detail page for a single ticket
-    //
-    res.status(200).json({ "message": `Salutations from ${req.pathname}` })
+    let axiosRsp = await axios({
+      method: "get",
+      url: `${process.env.API_BASE_URL}/tickets/`,
+    })
+    res.status(200).json(axiosRsp.data)
   }
 }
