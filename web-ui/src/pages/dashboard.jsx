@@ -63,7 +63,7 @@ function TicketRow(content) {
 export function TicketStatusTag(props) {
   return (
     <span className={`tag is-${mapTicketStatusToTag(props.status)}`}>
-      status
+      {props.status}
     </span>
   )
 }
