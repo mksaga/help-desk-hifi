@@ -12,7 +12,6 @@ var tickets = express.Router();
 tickets.get('/', async function(req: Request, res: Response, next: NextFunction) {
   let data = await ListTickets()
   let hydratedTickets = await HydrateTickets(data)
-  console.log("TicketsData: ", data)
   res.json(hydratedTickets);
 });
 

@@ -20,6 +20,20 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use('/tickets', require('./tickets/router'));
 
+app.get('/', async function(req: Request, res: Response) {
+  const message = `
+  Welcome to the backend for mksaga's help desk.
+
+  Available endpoints:
+  GET /tickets
+  POST /tickets
+
+  GET /ticket/:id
+  PUT /ticket/:id
+  `
+  res.json(message);
+});
+
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 })
