@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (apiURL == null) {
     apiURL = "https://help-desk-hifi.onrender.com"
   }
-  console.log("ApiURL: ", apiURL)
   if (req.method == "PUT") {
     axios({
       method: "put",
@@ -24,6 +23,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       mode: 'no-cors',
       url: `${apiURL}/tickets/${req.body.id}`,
     })
-    console.log(res)
   }
 }

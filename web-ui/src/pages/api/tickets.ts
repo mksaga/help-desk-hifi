@@ -6,7 +6,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (apiURL == null) {
     apiURL = "https://help-desk-hifi.onrender.com"
   }
-  console.log("Tickets ApiURL: ", apiURL)
 
   if (req.method == "POST") {
     try {
@@ -17,7 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data: req.body,
     })
   
-    console.log("Axios Rsp: ", axiosRsp)
     res.status(200).json(axiosRsp.data)
   } catch (error) {
     console.log("Error received: ", error)

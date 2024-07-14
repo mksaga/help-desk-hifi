@@ -162,6 +162,5 @@ function EmailUser(ticket) {
     New comments from admin: ${ticket.comments[0]}
     `
   }
-  console.log(message)
   return
 }

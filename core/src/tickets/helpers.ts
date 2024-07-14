@@ -4,8 +4,6 @@ import { Ticket } from "./types"
 
 function BuildNewTicket(req: Request): Ticket {
   const nowTimestamp: Date = new Date();
-  console.log(req.body)
-  console.log(req.params)
   return {
     "id": uuidv4(),
     "created_at": nowTimestamp.toISOString(),

@@ -10,7 +10,6 @@ export default function Home() {
     const response = await fetch(`/api/tickets`, {
       method: 'GET',
     })
-    console.log("Response: ", response)
     const data = await response.json()
     setTickets(data)
   }

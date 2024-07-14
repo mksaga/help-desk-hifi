@@ -3,22 +3,19 @@
 import express, { Request, Response, NextFunction } from "express";
 import { ReadTicket, ListTickets, CreateTicket, UpdateTicket } from "./repo"
 import { BuildTicket, BuildNewTicket } from "./helpers"
-import { HydrateTickets } from "./types"
 import { EmailUser } from "../email"
 
 var tickets = express.Router();
 
 tickets.get('/', async function(req: Request, res: Response, next: NextFunction) {
   let data = await ListTickets()
-  let hydratedTickets = await HydrateTickets(data)
-  res.json(hydratedTickets);
+  res.json(data);
 });
 
 tickets.get('/:id', async function(req: Request, res: Response, next: NextFunction) {
   let data = await ReadTicket(req.params.id)
   res.json(data)
 })
-
 
 tickets.post('/', async function(req: Request, res: Response) {
   let ticket = BuildNewTicket(req)
