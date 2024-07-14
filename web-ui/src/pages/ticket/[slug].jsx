@@ -50,7 +50,6 @@ export default function Home() {
         <table className="table" >
           <thead>
             <tr>
-    
               <td><b>status</b></td>
               <td><b>name</b></td>
               <td><b>email</b></td>
@@ -59,7 +58,7 @@ export default function Home() {
           </thead>
           <tbody>
             <tr>
-              <td><TicketStatusTag ticket={ticket} /></td>
+              <td><TicketStatusTag status={ticket.status} /></td>
               <td>{ticket.user_name}</td>
               <td>{ticket.user_email}</td>
               <td style={{maxWidth: 250}}>{ticket.description}</td>

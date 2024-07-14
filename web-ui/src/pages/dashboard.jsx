@@ -9,6 +9,7 @@ export default function Home() {
 
   useEffect( () => {
   async function fetchTickets() {
+    console.log(`URL: ${process.env.API_BASE_URL}`)
     const response = await fetch(`/api/tickets`, {
       method: 'GET',
     })
